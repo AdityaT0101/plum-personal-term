@@ -1,0 +1,644 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+<title>Your Term Life Quote — Plum</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600&family=DM+Serif+Display:ital@0;1&family=DM+Sans:opsz,wght@9..40,300;9..40,400;9..40,500;9..40,600&display=swap');
+
+:root {
+  --maroon: #3D0C2E;
+  --maroon2: #2a0820;
+  --cream: #FAF6EF;
+  --pink: #E8315B;
+  --green: #1DAB5F;
+  --muted: #9B8A98;
+  --border: #EAE0DA;
+  --serif: 'Cormorant Garamond', Georgia, 'Times New Roman', serif;
+  --display: 'DM Serif Display', Georgia, serif;
+  --sans: 'DM Sans', -apple-system, BlinkMacSystemFont, sans-serif;
+}
+
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; -webkit-tap-highlight-color: transparent; }
+
+html { font-size: 16px; }
+
+body {
+  background: var(--cream);
+  font-family: var(--sans);
+  font-weight: 400;
+  color: var(--maroon);
+  padding-bottom: 120px;
+  -webkit-font-smoothing: antialiased;
+  max-width: 480px;
+  margin: 0 auto;
+}
+
+/* ─── EXPIRED ─── */
+.expired-banner { background:#FEF2F2; border:1px solid #FECACA; border-radius:12px; padding:14px 16px; font-size:13px; color:#DC2626; text-align:center; margin:16px; display:none; }
+
+/* ─── ADVISOR ─── */
+.advisor-card {
+  background: white;
+  margin: 16px 16px 0;
+  border-radius: 24px;
+  padding: 20px;
+  border: 1px solid var(--border);
+  box-shadow: 0 2px 16px rgba(61,12,46,0.06);
+}
+.advisor-top { display:flex; align-items:flex-start; gap:14px; margin-bottom:16px; }
+.advisor-avatar {
+  width:58px; height:58px; border-radius:50%;
+  background: linear-gradient(145deg,#f0d0e0,#c9a0b8);
+  display:flex; align-items:center; justify-content:center;
+  font-family: var(--serif); font-size:24px; font-weight:600; color:var(--maroon);
+  flex-shrink:0; border:2px solid rgba(61,12,46,0.08);
+  letter-spacing:-0.5px;
+}
+.advisor-name { font-family:var(--sans); font-size:17px; font-weight:600; color:var(--maroon); margin-bottom:2px; letter-spacing:-0.2px; }
+.advisor-role { font-size:12px; font-weight:500; color:var(--muted); margin-bottom:10px; }
+.advisor-badges { display:flex; flex-wrap:wrap; gap:5px; }
+.badge {
+  background:#F5EDE8; border-radius:100px; padding:4px 10px;
+  font-size:11px; font-weight:500; color:var(--maroon);
+  display:inline-flex; align-items:center; gap:3px;
+}
+.advisor-divider { height:1px; background:var(--border); margin:16px 0; }
+.advisor-note {
+  font-family: var(--serif);
+  font-size:19px; font-style:italic; font-weight:400; color:var(--maroon); letter-spacing:0.1px;
+  line-height:1.7; margin-bottom:14px;
+}
+.advisor-avail { display:flex; align-items:center; gap:8px; font-size:13px; color:#16a34a; font-weight:500; }
+.avail-dot { width:7px; height:7px; border-radius:50%; background:#22c55e; flex-shrink:0; animation:pulse 2s infinite; box-shadow:0 0 0 0 rgba(34,197,94,0.4); }
+@keyframes pulse { 0%{box-shadow:0 0 0 0 rgba(34,197,94,0.4)} 70%{box-shadow:0 0 0 6px rgba(34,197,94,0)} 100%{box-shadow:0 0 0 0 rgba(34,197,94,0)} }
+
+/* ─── QUOTE STRIP ─── */
+.quote-strip { padding:28px 16px 0; }
+.eyebrow { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--pink); margin-bottom:10px; }
+.quote-hl {
+  font-family: var(--display);
+  font-size:42px; font-weight:400; color:var(--maroon); line-height:1.08; letter-spacing:-0.3px; margin-bottom:14px;
+}
+.quote-hl em { font-style:normal; color:var(--pink); }
+.tag-row { display:flex; flex-wrap:wrap; gap:6px; margin-bottom:10px; }
+.qtag { background:white; border:1px solid var(--border); border-radius:100px; padding:5px 13px; font-size:12px; color:var(--maroon); font-weight:600; }
+.validity-row { display:flex; align-items:center; gap:7px; font-size:11px; color:var(--muted); margin-top:4px; }
+.vdot { width:6px; height:6px; border-radius:50%; background:var(--pink); animation:blink 2s infinite; }
+@keyframes blink { 0%,100%{opacity:1} 50%{opacity:0.25} }
+
+/* ─── REC CARD ─── */
+.rec-section { padding:28px 16px 0; }
+.rec-card {
+  background: var(--maroon);
+  border-radius:24px; padding:24px 20px 22px;
+  position:relative; overflow:hidden;
+  box-shadow:0 8px 32px rgba(61,12,46,0.25);
+}
+.rec-card::before { content:''; position:absolute; top:-60px; right:-60px; width:180px; height:180px; border-radius:50%; background:rgba(232,49,91,0.14); pointer-events:none; }
+.rec-card::after  { content:''; position:absolute; bottom:-40px; left:-30px; width:120px; height:120px; border-radius:50%; background:rgba(250,246,239,0.03); pointer-events:none; }
+.rec-eyebrow { font-family:var(--sans); font-size:10px; letter-spacing:2px; text-transform:uppercase; color:rgba(250,246,239,0.4); margin-bottom:5px; }
+.rec-insurer { font-family:var(--display); font-size:38px; font-weight:400; color:var(--cream); margin-bottom:4px; letter-spacing:-0.5px; line-height:1.05; letter-spacing:-0.3px; }
+.rec-sub { font-size:13px; font-weight:500; color:rgba(250,246,239,0.6); margin-bottom:18px; line-height:1.4; }
+.freq-toggle { display:inline-flex; background:rgba(255,255,255,0.09); border-radius:100px; padding:3px; margin-bottom:20px; }
+.freq-btn { padding:7px 20px; border-radius:100px; font-size:12px; font-weight:500; color:rgba(250,246,239,0.4); cursor:pointer; border:none; background:transparent; font-family:var(--sans); transition:all 0.2s; }
+.freq-btn.active { background:rgba(255,255,255,0.15); color:var(--cream); }
+.stat-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:20px; }
+.stat-box { background:rgba(255,255,255,0.07); border-radius:16px; padding:18px 16px; border:1px solid rgba(255,255,255,0.06); }
+.stat-val { font-family:var(--display); font-size:34px; font-weight:400; color:var(--cream); line-height:1; margin-bottom:6px; letter-spacing:-0.3px; }
+.stat-val sup { font-size:15px; vertical-align:super; font-family:var(--serif); font-weight:300; }
+.stat-val .unit { font-size:13px; font-family:var(--sans); font-weight:400; color:var(--pink); letter-spacing:0; }
+.stat-desc { font-size:12px; font-weight:500; color:rgba(250,246,239,0.6); line-height:1.5; font-family:var(--sans); }
+.rec-divider { height:1px; background:rgba(255,255,255,0.1); margin:18px 0; }
+.rec-why-lbl { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:rgba(250,246,239,0.4); margin-bottom:8px; }
+.rec-why-txt { font-family:var(--serif); font-size:17px; font-style:italic; font-weight:400; color:rgba(250,246,239,0.75); line-height:1.72; letter-spacing:0.1px; }
+
+/* ─── PRICE CALLOUT ─── */
+.price-callout {
+  margin:16px 16px 0; background:white;
+  border-left:3px solid var(--pink);
+  border-radius:0 16px 16px 0; padding:18px;
+  box-shadow:0 2px 8px rgba(61,12,46,0.05);
+}
+.callout-title { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:1.5px; text-transform:uppercase; color:var(--pink); margin-bottom:8px; }
+.callout-text { font-family:var(--sans); font-size:14px; font-weight:500; color:var(--maroon); line-height:1.8; }
+.callout-text em { font-style:italic; font-weight:600; }
+
+/* ─── COMPARE ─── */
+.compare-section { padding:28px 16px 0; }
+.compare-toggle {
+  display:flex; align-items:center; justify-content:space-between;
+  background:white; border:1.5px solid var(--border);
+  border-radius:16px; padding:16px; cursor:pointer;
+  box-shadow:0 2px 8px rgba(61,12,46,0.04);
+  transition:border-color 0.2s;
+}
+.compare-toggle:hover { border-color:#c9a0b8; }
+.ctog-label { font-family:var(--sans); font-size:14px; font-weight:600; color:var(--maroon); }
+.ctog-sub { font-family:var(--sans); font-size:11px; color:var(--muted); margin-top:3px; }
+.chevron { color:var(--muted); font-size:20px; transition:transform 0.3s; user-select:none; }
+.chevron.open { transform:rotate(180deg); }
+.compare-wrap { max-height:0; overflow:hidden; transition:max-height 0.5s cubic-bezier(0.4,0,0.2,1); }
+.compare-wrap.open { max-height:1400px; }
+.compare-inner { padding-top:10px; overflow-x:auto; -webkit-overflow-scrolling:touch; }
+table.ct { width:100%; border-collapse:separate; border-spacing:0; min-width:300px; }
+table.ct th { background:var(--maroon); color:var(--cream); font-family:var(--sans); font-size:11px; font-weight:500; padding:11px 10px; text-align:center; }
+table.ct th:first-child { text-align:left; border-radius:12px 0 0 0; width:32%; }
+table.ct th:last-child { border-radius:0 12px 0 0; }
+table.ct th.hl { background:var(--pink); }
+table.ct th.hl:first-of-type { border-radius: 0; }
+table.ct td { padding:11px 10px; font-size:12px; border-bottom:1px solid var(--border); background:white; vertical-align:middle; font-family:var(--sans); }
+table.ct td:first-child { color:var(--muted); font-size:11px; }
+table.ct td:not(:first-child) { text-align:center; font-weight:500; color:var(--maroon); }
+table.ct td.hlc { background:#FFF5F7; }
+table.ct tr:last-child td { border-bottom:none; }
+table.ct tr:last-child td:first-child { border-radius:0 0 0 12px; }
+table.ct tr:last-child td:last-child { border-radius:0 0 12px 0; }
+.chk { color:#16a34a; } .dsh { color:var(--muted); }
+
+/* ─── WHY PLUM ─── */
+.why-section {
+  margin: 32px 0 0;
+  background: var(--maroon);
+  padding: 40px 20px 0;
+  position: relative;
+  overflow: hidden;
+}
+.why-glow-1 {
+  position:absolute; top:-100px; right:-80px;
+  width:300px; height:300px; border-radius:50%;
+  background: rgba(232,49,91,0.15);
+  filter: blur(60px);
+  pointer-events:none;
+}
+.why-glow-2 {
+  position:absolute; bottom:0; left:-60px;
+  width:220px; height:220px; border-radius:50%;
+  background: rgba(250,246,239,0.04);
+  filter: blur(40px);
+  pointer-events:none;
+}
+.why-inner { position:relative; z-index:1; }
+.why-eyebrow { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--pink); margin-bottom:12px; }
+.why-hl { font-family:var(--serif); font-size:34px; font-weight:300; line-height:1.22; color:var(--cream); margin-bottom:32px; letter-spacing:-0.3px; }
+.why-hl em { font-style:italic; color:rgba(250,246,239,0.6); }
+.why-grid { display:grid; grid-template-columns:1fr 1fr; gap:10px; margin-bottom:28px; }
+.wstat { background:rgba(255,255,255,0.06); border:1px solid rgba(255,255,255,0.09); border-radius:18px; padding:18px 16px; }
+.wstat-num { font-family:var(--display); font-size:34px; font-weight:400; color:var(--cream); line-height:1; margin-bottom:6px; letter-spacing:-0.3px; }
+.wstat-lbl { font-family:var(--sans); font-size:12px; font-weight:500; color:rgba(250,246,239,0.55); line-height:1.45; }
+.trusted-lbl { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:2px; text-transform:uppercase; color:rgba(250,246,239,0.3); margin-bottom:12px; }
+.chips { display:flex; gap:7px; flex-wrap:wrap; padding-bottom:32px; }
+.chip { background:rgba(255,255,255,0.07); border:1px solid rgba(255,255,255,0.1); border-radius:100px; padding:6px 14px; font-size:12px; color:rgba(250,246,239,0.65); white-space:nowrap; font-family:var(--sans); }
+
+/* ─── TESTIMONIALS ─── */
+.t-section {
+  background: var(--cream);
+  padding: 36px 16px 40px;
+}
+.t-label { font-family:var(--sans); font-size:10px; font-weight:600; letter-spacing:2.5px; text-transform:uppercase; color:var(--pink); margin-bottom:20px; }
+.t-clip { overflow:hidden; width:100%; border-radius:20px; }
+.t-track {
+  display:flex; flex-wrap:nowrap;
+  transition:transform 0.48s cubic-bezier(0.4,0,0.2,1);
+  will-change:transform;
+}
+.tcard {
+  flex:0 0 100%; width:100%; box-sizing:border-box;
+  background: white;
+  border:1px solid var(--border);
+  border-radius:20px;
+  padding:24px 20px 22px;
+  box-shadow: 0 2px 16px rgba(61,12,46,0.06);
+}
+.tcard-quote { font-family:var(--serif); font-size:20px; font-style:italic; font-weight:400; color:var(--maroon); line-height:1.65; margin-bottom:20px; letter-spacing:0.1px; }
+.tcard-foot { display:flex; align-items:center; gap:12px; }
+.tcard-av { width:36px; height:36px; border-radius:50%; background:#F5EDE8; border:1px solid rgba(232,49,91,0.2); display:flex; align-items:center; justify-content:center; font-family:var(--serif); font-size:14px; font-weight:500; color:var(--pink); flex-shrink:0; }
+.tcard-name { font-family:var(--sans); font-size:13px; font-weight:600; color:var(--maroon); display:block; margin-bottom:2px; }
+.tcard-role { font-family:var(--sans); font-size:12px; font-weight:500; color:var(--muted); display:block; line-height:1.4; }
+.t-dots { display:flex; align-items:center; gap:7px; margin-top:18px; }
+.t-dot { width:6px; height:6px; border-radius:100px; background:var(--border); cursor:pointer; transition:all 0.3s ease; flex-shrink:0; }
+.t-dot.on { width:24px; background:var(--pink); }
+
+/* ─── FOOTER ─── */
+.footer { background:var(--cream); padding:0 20px 32px; text-align:center; }
+.footer-inner { border-top:1px solid var(--border); padding-top:28px; }
+.footer-logo { font-family:var(--serif); font-size:22px; color:var(--maroon); margin-bottom:8px; }
+.footer-logo span { color:var(--pink); }
+.footer-legal { font-family:var(--sans); font-size:10px; color:#C4B8C0; line-height:1.7; }
+
+/* ─── STICKY CTA ─── */
+.sticky-cta {
+  position:fixed; bottom:0; left:0; right:0; max-width:480px; margin:0 auto;
+  background:rgba(250,246,239,0.97);
+  border-top:1px solid var(--border);
+  padding:12px 16px 24px;
+  z-index:100;
+  backdrop-filter:blur(12px);
+  -webkit-backdrop-filter:blur(12px);
+  box-shadow:0 -4px 20px rgba(61,12,46,0.08);
+}
+.cta-main {
+  display:flex; align-items:center; justify-content:center; gap:9px;
+  width:100%; padding:16px; border-radius:16px;
+  background:var(--green); color:white;
+  font-family:var(--sans); font-size:15px; font-weight:600;
+  border:none; cursor:pointer; text-decoration:none; margin-bottom:10px;
+  box-shadow:0 4px 16px rgba(29,171,95,0.35);
+  transition:background 0.2s, transform 0.1s;
+  -webkit-appearance:none;
+}
+.cta-main:active { transform:scale(0.98); background:#189a52; }
+.cta-share {
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  width:100%; background:none; border:none;
+  font-family:var(--sans); font-size:13px; color:var(--muted);
+  cursor:pointer; padding:4px; transition:color 0.2s;
+}
+.cta-share:hover { color:var(--maroon); }
+
+/* ─── FADE IN ─── */
+.fade { opacity:0; transform:translateY(16px); animation:fadeUp 0.55s ease forwards; }
+.fade:nth-child(1){animation-delay:0.05s} .fade:nth-child(2){animation-delay:0.12s}
+.fade:nth-child(3){animation-delay:0.2s}  .fade:nth-child(4){animation-delay:0.28s}
+.fade:nth-child(5){animation-delay:0.36s} .fade:nth-child(6){animation-delay:0.44s}
+.fade:nth-child(7){animation-delay:0.52s} .fade:nth-child(8){animation-delay:0.6s}
+@keyframes fadeUp { to { opacity:1; transform:translateY(0); } }
+</style>
+</head>
+<body>
+
+<div class="expired-banner" id="expiredBanner">this quote has expired. contact your advisor for a fresh one.</div>
+
+<!-- ADVISOR -->
+<div class="advisor-card fade">
+  <div class="advisor-top">
+    <div class="advisor-avatar" id="avatarEl">A</div>
+    <div style="flex:1;min-width:0;">
+      <div class="advisor-name" id="advisorNameEl">aditya t</div>
+      <div class="advisor-role">term life advisor &middot; plum personal</div>
+      <div class="advisor-badges">
+        <span class="badge">&#11088; 4.9 rating</span>
+        <span class="badge">200+ families</span>
+        <span class="badge">IRDAI certified</span>
+        <span class="badge">3 yrs at plum</span>
+      </div>
+    </div>
+  </div>
+  <div class="advisor-divider"></div>
+  <div class="advisor-note" id="advisorNoteEl">&#8220;i looked at your situation and put together what i&#8217;d recommend for my own family at your age.&#8221;</div>
+  <div class="advisor-avail">
+    <div class="avail-dot"></div>
+    <span>available on whatsapp &middot; usually replies in &lt;2 hrs</span>
+  </div>
+</div>
+
+<!-- QUOTE STRIP -->
+<div class="quote-strip fade">
+  <div class="eyebrow">your quote</div>
+  <div class="quote-hl"><em id="coverageHL">&#8377;3 Cr</em> cover,<br><span id="nameHL">raman</span>.</div>
+  <div class="tag-row">
+    <span class="qtag" id="tagAge">age 29</span>
+    <span class="qtag" id="tagSmoker">non-smoker</span>
+    <span class="qtag">cover till 65</span>
+    <span class="qtag" id="tagTerm">regular pay</span>
+  </div>
+  <div class="validity-row">
+    <div class="vdot"></div>
+    <span id="validityTxt">valid until 24 mar 2026</span>
+  </div>
+</div>
+
+<!-- RECOMMENDED PLAN -->
+<div class="rec-section fade">
+  <div class="eyebrow">your recommended plan</div>
+  <div class="rec-card">
+    <div class="rec-eyebrow" id="recEyebrow">TATA AIA &middot; TERM PLAN</div>
+    <div class="freq-toggle">
+      <button class="freq-btn active" onclick="setFreq(this,'monthly')">monthly</button>
+      <button class="freq-btn" onclick="setFreq(this,'annual')">annual</button>
+    </div>
+    <div class="rec-insurer" id="recInsurerEl">tata aia life</div>
+    <div class="rec-sub" id="recSubEl">&#8377;3 cr death benefit &middot; regular pay &middot; till age 65</div>
+    <div class="stat-grid">
+      <div class="stat-box">
+        <div class="stat-val" id="recPremiumEl"><sup>&#8377;</sup>2,468<span class="unit">/mo</span></div>
+        <div class="stat-desc" id="recY1El">&#8377;2,024/mo in year 1 &mdash; 19% first-year discount</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val"><sup>&#8377;</sup><span id="recCoverEl">3</span><span class="unit"> Cr</span></div>
+        <div class="stat-desc">your family receives this, tax-free</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="recCsrEl">99.4<span class="unit">%</span></div>
+        <div class="stat-desc">claim settlement ratio</div>
+      </div>
+      <div class="stat-box">
+        <div class="stat-val" id="recFeatureEl">50<span class="unit">%</span></div>
+        <div class="stat-desc" id="recFeatDescEl">paid upfront on terminal illness</div>
+      </div>
+    </div>
+    <div class="rec-divider"></div>
+    <div class="rec-why-lbl">why this plan</div>
+    <div class="rec-why-txt" id="recWhyEl">&#8220;lowest ongoing premium with one of the strongest claims track records in the country. straightforward product, no hidden conditions.&#8221;</div>
+  </div>
+</div>
+
+<!-- PRICE CALLOUT -->
+<div class="price-callout fade">
+  <div class="callout-title">same price, everywhere. irdai regulates it.</div>
+  <div class="callout-text">the price here is the same everywhere. irdai regulates it. no platform <em>can</em> beat it, no broker <em>can</em> discount it. what you are choosing is not a price &mdash; it is who is there when you need to use it.</div>
+</div>
+
+<!-- COMPARE -->
+<div class="compare-section fade">
+  <div class="eyebrow">all options</div>
+  <div class="compare-toggle" onclick="toggleCompare()">
+    <div>
+      <div class="ctog-label">compare all 3 insurers</div>
+      <div class="ctog-sub">icici prudential &middot; max life &middot; tata aia</div>
+    </div>
+    <div class="chevron" id="chevron">&#9662;</div>
+  </div>
+  <div class="compare-wrap" id="compareWrap">
+    <div class="compare-inner">
+      <table class="ct" id="ctable">
+        <thead>
+          <tr id="ct-head">
+            <th style="width:32%"></th>
+            <th id="th_rec" class="hl">— &#10022;</th>
+            <th id="th_a">—</th>
+            <th id="th_b">—</th>
+          </tr>
+        </thead>
+        <tbody id="ct-body">
+          <tr><td>Year 1 Premium</td>  <td class="hlc" id="c_rec_y1">&#8212;</td><td id="c_a_y1">&#8212;</td><td id="c_b_y1">&#8212;</td></tr>
+          <tr><td>Year 2 Onwards</td>  <td class="hlc" id="c_rec_y2">&#8212;</td><td id="c_a_y2">&#8212;</td><td id="c_b_y2">&#8212;</td></tr>
+          <tr><td>Y1 Discount</td>     <td class="hlc" id="c_rec_d">&#8212;</td> <td id="c_a_d">&#8212;</td> <td id="c_b_d">&#8212;</td></tr>
+          <tr><td>Terminal Illness</td><td class="hlc" id="c_rec_ti">&#8212;</td><td id="c_a_ti">&#8212;</td><td id="c_b_ti">&#8212;</td></tr>
+          <tr><td>Premium Pause</td>   <td class="hlc" id="c_rec_pp">&#8212;</td><td id="c_a_pp">&#8212;</td><td id="c_b_pp">&#8212;</td></tr>
+          <tr><td>Claim Settlement</td><td class="hlc" id="c_rec_cs">&#8212;</td><td id="c_a_cs">&#8212;</td><td id="c_b_cs">&#8212;</td></tr>
+          <tr><td>In Business Since</td><td class="hlc" id="c_rec_bs">&#8212;</td><td id="c_a_bs">&#8212;</td><td id="c_b_bs">&#8212;</td></tr>
+          <tr><td>Lives Insured</td>   <td class="hlc" id="c_rec_li">&#8212;</td><td id="c_a_li">&#8212;</td><td id="c_b_li">&#8212;</td></tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>
+
+<!-- WHY PLUM -->
+<div class="why-section fade">
+  <div class="why-glow-1"></div>
+  <div class="why-glow-2"></div>
+  <div class="why-inner">
+    <div class="why-eyebrow">why plum</div>
+    <div class="why-hl">you already know us from work.<br><em>this is the same care, for your family.</em></div>
+    <div class="why-grid">
+      <div class="wstat"><div class="wstat-num">4,500+</div><div class="wstat-lbl">companies trust plum for employee health</div></div>
+      <div class="wstat"><div class="wstat-num">500K+</div><div class="wstat-lbl">lives covered across india</div></div>
+      <div class="wstat"><div class="wstat-num">NPS 80</div><div class="wstat-lbl">vs industry average of 60</div></div>
+      <div class="wstat"><div class="wstat-num">&#8377;180Cr+</div><div class="wstat-lbl">in claims settled for families</div></div>
+    </div>
+    <div class="trusted-lbl">trusted by india&#8217;s best companies</div>
+    <div class="chips">
+      <div class="chip">swiggy</div><div class="chip">zomato</div><div class="chip">cred</div>
+      <div class="chip">atlassian</div><div class="chip">unacademy</div><div class="chip">meesho</div>
+      <div class="chip">rippling</div><div class="chip">postman</div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<div class="t-section fade">
+    <div class="t-label">what customers say</div>
+    <div class="t-clip">
+      <div class="t-track" id="tTrack">
+        <div class="tcard">
+          <div class="tcard-quote">&#8220;the medical was arranged at my home within 3 days of applying. i didn&#8217;t have to chase anyone &mdash; plum coordinated everything end to end.&#8221;</div>
+          <div class="tcard-foot">
+            <div class="tcard-av">A</div>
+            <div><span class="tcard-name">arjun menon</span><span class="tcard-role">software engineer &middot; purchased term plan via plum</span></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-quote">&#8220;had questions at every step &mdash; underwriting, nominee details, policy wording. my advisor replied same day, every time. never felt like a ticket.&#8221;</div>
+          <div class="tcard-foot">
+            <div class="tcard-av">P</div>
+            <div><span class="tcard-name">priya nair</span><span class="tcard-role">product manager &middot; plum personal customer</span></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-quote">&#8220;policy document came in 4 days. whole process from form to issuance was completely paperless. didn&#8217;t print a single thing.&#8221;</div>
+          <div class="tcard-foot">
+            <div class="tcard-av">S</div>
+            <div><span class="tcard-name">saurabh moody</span><span class="tcard-role">plum personal customer</span></div>
+          </div>
+        </div>
+        <div class="tcard">
+          <div class="tcard-quote">&#8220;they are genuinely invested in helping you decide, even if that means a different plan. felt like a friend, not a salesperson.&#8221;</div>
+          <div class="tcard-foot">
+            <div class="tcard-av">K</div>
+            <div><span class="tcard-name">kawaljeet</span><span class="tcard-role">director of operations</span></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="t-dots" id="tDots"></div>
+</div>
+
+<!-- FOOTER -->
+<div class="footer">
+  <div class="footer-inner">
+    <div class="footer-logo">plum<span>.</span></div>
+    <div class="footer-legal">
+      insurance products offered by plum benefits insurance brokers pvt ltd<br>
+      irdai reg: irda/db1001/2022 &middot; valid till 04-06-2026 &middot; cin u66000ka2022ptc160458
+    </div>
+  </div>
+</div>
+
+<!-- STICKY CTA -->
+<div class="sticky-cta">
+  <a class="cta-main" id="ctaBtn" href="#" target="_blank">
+    <svg width="18" height="18" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>
+    talk to <span id="ctaName" style="margin-left:2px;">aditya</span>
+  </a>
+  <button class="cta-share" onclick="shareLink()">&#128279; share with family</button>
+</div>
+
+<script>
+  /* ── params ── */
+  var p = new URLSearchParams(window.location.search);
+  var custName = p.get('name')    || 'Raman';
+  var custAge  = p.get('age')     || '29';
+  var advName  = p.get('advisor') || 'Aditya T';
+  var advWa    = p.get('wa')      || '918123322340';
+  var coverage = p.get('cover')   || '3';
+  var expiry   = p.get('expiry')  || '20270101';
+  var smoker   = p.get('smoker')  || 'non-smoker';
+  var term     = p.get('term')    || 'Regular pay';
+  var note     = p.get('note')    || '';
+  var recIns   = p.get('plan')    || 'TATA AIA';
+
+  var pr = {
+    icici:{ y1:p.get('icici_y1')||'2177', y2:p.get('icici_y2')||'2488', disc:p.get('icici_disc')||'15', csr:'99.3', feat:'100%', featDesc:'of sum assured on terminal illness' },
+    max:  { y1:p.get('max_y1') ||'2109', y2:p.get('max_y2') ||'2481', disc:p.get('max_disc') ||'15', csr:'99.7', feat:'99.7%',featDesc:'claim settlement ratio' },
+    tata: { y1:p.get('tata_y1')||'2024', y2:p.get('tata_y2')||'2468', disc:p.get('tata_disc')||'19', csr:'99.4', feat:'50%',  featDesc:'paid upfront on terminal illness' }
+  };
+
+  function fmt(v){ var n=parseInt(String(v).replace(/,/g,'')); return isNaN(n)?v:n.toLocaleString('en-IN'); }
+
+  /* expiry */
+  var expD = new Date(expiry.slice(0,4), expiry.slice(4,6)-1, expiry.slice(6,8));
+  if(new Date()>expD){ document.getElementById('expiredBanner').style.display='block'; document.querySelector('.sticky-cta').style.display='none'; }
+  var expFmt = expD.toLocaleDateString('en-IN',{day:'numeric',month:'short',year:'numeric'}).toLowerCase();
+
+  var firstName = advName.split(' ')[0];
+  var rk = recIns.toLowerCase().indexOf('tata')>-1?'tata':recIns.toLowerCase().indexOf('icici')>-1?'icici':'max';
+  var rp = pr[rk];
+  var rlabel = rk==='tata'?'tata aia life':rk==='icici'?'icici prudential':'max life';
+  var rlabelUp = rk==='tata'?'TATA AIA':rk==='icici'?'ICICI PRUDENTIAL':'MAX LIFE';
+
+  /* populate */
+  function toTC(s){ return s.replace(/\b\w/g,function(c){return c.toUpperCase();}); }
+
+  document.getElementById('avatarEl').textContent      = firstName[0].toUpperCase();
+  document.getElementById('advisorNameEl').textContent = toTC(advName);
+  document.getElementById('validityTxt').textContent   = 'Valid until ' + expFmt;
+  document.getElementById('coverageHL').textContent    = '\u20b9' + coverage + ' Cr';
+  document.getElementById('nameHL').textContent        = toTC(custName);
+  document.getElementById('tagAge').textContent        = 'Age ' + custAge;
+  document.getElementById('tagSmoker').textContent     = smoker==='smoker'?'Smoker':'Non-Smoker';
+  document.getElementById('tagTerm').textContent       = toTC(term);
+  document.getElementById('recCoverEl').textContent    = coverage;
+  document.getElementById('ctaName').textContent       = toTC(firstName);
+  document.getElementById('ctaBtn').href               = 'https://wa.me/'+advWa+'?text='+encodeURIComponent('Hi '+toTC(firstName)+', I went through the quote. Can we connect?');
+  if(note) document.getElementById('advisorNoteEl').textContent = '\u201c'+note+'\u201d';
+  document.getElementById('recEyebrow').textContent    = rlabelUp + ' \u00b7 TERM PLAN';
+  document.getElementById('recInsurerEl').textContent  = toTC(rlabel);
+  document.getElementById('recSubEl').textContent      = '\u20b9'+coverage+' Cr death benefit \u00b7 '+toTC(term)+' \u00b7 Till Age 65';
+  if(note) document.getElementById('recWhyEl').textContent = '\u201c'+note+'\u201d';
+  document.getElementById('recCsrEl').innerHTML        = rp.csr+'<span class="unit">%</span>';
+  document.getElementById('recFeatureEl').textContent  = rp.feat;
+  document.getElementById('recFeatDescEl').textContent = rp.featDesc;
+
+  /* table filled dynamically below via allIns */
+
+  /* ── BUILD COMPARE TABLE dynamically — rec insurer always col 1 ── */
+  var allIns = {
+    tata:  { label:'Tata AIA',          y1:pr.tata.y1,  y2:pr.tata.y2,  disc:pr.tata.disc,  ti:'50% of cover',    pp:'After Yr 5', cs:'99.4%', bs:'2001', li:'1.5 Cr+' },
+    icici: { label:'ICICI Prudential',  y1:pr.icici.y1, y2:pr.icici.y2, disc:pr.icici.disc, ti:'100% of cover',   pp:'After Yr 5', cs:'99.3%', bs:'2000', li:'5 Cr+' },
+    max:   { label:'Axis Max Life',          y1:pr.max.y1,   y2:pr.max.y2,   disc:pr.max.disc,   ti:'Up to ₹1 Cr',     pp:'After Yr 3', cs:'99.7%', bs:'2000', li:'2 Cr+' }
+  };
+  var others = Object.keys(allIns).filter(function(k){ return k!==rk; });
+  var ins_a = allIns[others[0]], ins_b = allIns[others[1]];
+  var ins_rec = allIns[rk];
+
+  // Headers
+  document.getElementById('th_rec').innerHTML = ins_rec.label + ' <span style="font-size:10px;opacity:0.8">&#10022; recommended</span>';
+  document.getElementById('th_a').textContent  = ins_a.label;
+  document.getElementById('th_b').textContent  = ins_b.label;
+
+  function scC(id,v,s){ var e=document.getElementById(id); if(e) e.textContent = v?('\u20b9'+fmt(v)+(s||'')):'—'; }
+  function sdC(id,v){   var e=document.getElementById(id); if(e) e.textContent = v?(v+'%'):'—'; }
+  function stC(id,v){   var e=document.getElementById(id); if(e) e.textContent = v||'—'; }
+
+  scC('c_rec_y1',ins_rec.y1,'/mo'); scC('c_rec_y2',ins_rec.y2,'/mo'); sdC('c_rec_d',ins_rec.disc);
+  stC('c_rec_ti',ins_rec.ti); stC('c_rec_pp',ins_rec.pp); stC('c_rec_so',ins_rec.so);
+  stC('c_rec_cs',ins_rec.cs); stC('c_rec_bs',ins_rec.bs); stC('c_rec_li',ins_rec.li);
+
+  scC('c_a_y1',ins_a.y1,'/mo'); scC('c_a_y2',ins_a.y2,'/mo'); sdC('c_a_d',ins_a.disc);
+  stC('c_a_ti',ins_a.ti); stC('c_a_pp',ins_a.pp); stC('c_a_so',ins_a.so);
+  stC('c_a_cs',ins_a.cs); stC('c_a_bs',ins_a.bs); stC('c_a_li',ins_a.li);
+
+  scC('c_b_y1',ins_b.y1,'/mo'); scC('c_b_y2',ins_b.y2,'/mo'); sdC('c_b_d',ins_b.disc);
+  stC('c_b_ti',ins_b.ti); stC('c_b_pp',ins_b.pp); stC('c_b_so',ins_b.so);
+  stC('c_b_cs',ins_b.cs); stC('c_b_bs',ins_b.bs); stC('c_b_li',ins_b.li);
+
+  /* rec premium */
+  var rY2=parseInt(String(rp.y2).replace(/,/g,''))||0, rY1=parseInt(String(rp.y1).replace(/,/g,''))||0;
+  document.getElementById('recPremiumEl').innerHTML = '<sup>\u20b9</sup>'+fmt(rp.y2)+'<span class="unit">/mo</span>';
+  document.getElementById('recY1El').textContent    = '\u20b9'+fmt(rp.y1)+'/mo in year 1 \u2014 '+rp.disc+'% first-year discount';
+
+  function setFreq(el,freq){
+    document.querySelectorAll('.freq-btn').forEach(function(b){b.classList.remove('active');});
+    el.classList.add('active');
+    if(freq==='monthly'){
+      document.getElementById('recPremiumEl').innerHTML='<sup>\u20b9</sup>'+fmt(rp.y2)+'<span class="unit">/mo</span>';
+      document.getElementById('recY1El').textContent='\u20b9'+fmt(rp.y1)+'/mo in year 1 \u2014 '+rp.disc+'% first-year discount';
+    } else {
+      document.getElementById('recPremiumEl').innerHTML='<sup>\u20b9</sup>'+(rY2*12).toLocaleString('en-IN')+'<span class="unit">/yr</span>';
+      document.getElementById('recY1El').textContent='\u20b9'+(rY1*12).toLocaleString('en-IN')+'/yr in year 1 \u2014 '+rp.disc+'% first-year discount';
+    }
+  }
+
+  function toggleCompare(){
+    var w=document.getElementById('compareWrap'), c=document.getElementById('chevron');
+    c.classList.toggle('open',w.classList.toggle('open'));
+  }
+
+  /* ── TESTIMONIAL CAROUSEL ── */
+  (function(){
+    var track  = document.getElementById('tTrack');
+    var dotsEl = document.getElementById('tDots');
+    var cards  = track.querySelectorAll('.tcard');
+    var total  = cards.length;
+    var cur    = 0;
+    var timer;
+
+    // measure one card width (clip container width)
+    function cardW(){ return track.parentElement.offsetWidth; }
+
+    // build dots
+    for(var i=0;i<total;i++){
+      var d=document.createElement('div');
+      d.className='t-dot'+(i===0?' on':'');
+      d.dataset.i=i;
+      d.addEventListener('click',(function(n){return function(){go(n);restart();};})(i));
+      dotsEl.appendChild(d);
+    }
+
+    function go(n){
+      cur=(n+total)%total;
+      track.style.transform='translateX(-'+(cur*cardW())+'px)';
+      dotsEl.querySelectorAll('.t-dot').forEach(function(el,j){
+        el.classList.toggle('on', j===cur);
+      });
+    }
+
+    function restart(){
+      clearInterval(timer);
+      timer=setInterval(function(){go(cur+1);},4200);
+    }
+
+    // touch
+    var sx=0;
+    track.addEventListener('touchstart',function(e){sx=e.touches[0].clientX;clearInterval(timer);},{passive:true});
+    track.addEventListener('touchend',function(e){
+      var dx=sx-e.changedTouches[0].clientX;
+      if(Math.abs(dx)>40) go(dx>0?cur+1:cur-1);
+      restart();
+    },{passive:true});
+
+    // reposition on resize
+    window.addEventListener('resize',function(){
+      track.style.transition='none';
+      track.style.transform='translateX(-'+(cur*cardW())+'px)';
+      setTimeout(function(){track.style.transition='';},50);
+    });
+
+    restart();
+  })();
+
+  /* share */
+  function shareLink(){
+    if(navigator.share){
+      navigator.share({ title: custName+"'s term life quote \u2014 plum", url: window.location.href });
+    } else {
+      navigator.clipboard.writeText(window.location.href).catch(function(){});
+      alert('link copied \u2014 share it with your family.');
+    }
+  }
+</script>
+</body>
+</html>
