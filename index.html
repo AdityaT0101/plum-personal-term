@@ -987,7 +987,7 @@
     const fullUrl = 'https://plum-personal-term.onrender.com' + generatedToken + '?' + qp.toString();
 
     document.getElementById('expiryBadge').textContent  = 'expires ' + getExpiryDate();
-    document.getElementById('linkUrl').textContent      = 'plum.quotes/q/' + generatedToken;
+    document.getElementById('linkUrl').textContent      = 'https://plum-personal-term.onrender.com' + generatedToken;
     document.getElementById('linkUrl').dataset.full     = fullUrl;
 
     const wrapper = document.getElementById('linkWrapper');
